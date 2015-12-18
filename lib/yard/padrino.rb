@@ -375,7 +375,7 @@ module YARD
         }.first
 
         if approute
-          name = route.verb + " " + path
+          name = route.verb + " " + approute
         end
 
         title = "<strong>%s</strong>%s" % [h(name), blk]
