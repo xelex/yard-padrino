@@ -365,6 +365,19 @@ module YARD
         name = route.display_name
         blk = format_block(route)
 
+        # Deep Padrino integration
+        approute = ::Padrino.mounted_apps.find_all{|v|
+          v.app_class == route.namespace.to_s
+        }.map {|v|
+          v.named_routes
+        } .flatten.find_all {|v|
+          v.verb == route.verb && v.identifier.to_s == route.controller.to_s+" "+route.args.first.to_s
+        }.first
+
+        if approute
+          name = route.verb + " " + path
+        end
+
         title = "<strong>%s</strong>%s" % [h(name), blk]
         if link
           link_title = h(name)
@@ -374,8 +387,6 @@ module YARD
         else
           title
         end
-
-        binding.pry
       end
     end
 
