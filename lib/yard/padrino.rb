@@ -370,12 +370,12 @@ module YARD
           v.app_class == route.namespace.to_s
         }.map {|v|
           v.named_routes
-        } .flatten.find_all {|v|
+        }.flatten.find_all {|v|
           v.verb == route.verb && v.identifier.to_s == route.controller.to_s+" "+route.args.first.to_s
         }.first
 
         if approute
-          name = route.verb + " " + approute
+          name = approute.verb + " " + approute.path
         end
 
         title = "<strong>%s</strong>%s" % [h(name), blk]
