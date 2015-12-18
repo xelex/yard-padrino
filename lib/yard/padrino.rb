@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'yard/padrino/version'
 require 'yard'
+require 'pry'
 
 module YARD
   class CLI::Stats
@@ -259,7 +260,7 @@ module YARD
         register_padrino_handler(
           {
             :class        => GeneralHandlerObject,
-            :group        => "Padrino Handlers",
+            :group        => "HTTP handlers",
             :method_name  => method_name,
             :controller   => controller,
             :verb         => verb,
@@ -373,6 +374,8 @@ module YARD
         else
           title
         end
+
+        binding.pry
       end
     end
 
